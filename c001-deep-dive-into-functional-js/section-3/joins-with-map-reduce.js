@@ -37,7 +37,9 @@ const tests = [
 	},
 ]
 
-const studentTests = tests.map( test => {
+const studentTests = tests
+	.filter(test => test.score >= 0.7)
+	.map( test => {
 	const student = students.find(s => s.id === test.studentId)
 	return {
 		studentName: student.name,
@@ -54,6 +56,6 @@ const studentTestCount = students.map(student => {
 		studentName: student.name,
 		testsCount
 	}
-})
+}).filter(stc => stc.testsCount >= 2)
 
 console.log(studentTestCount)
